@@ -58,16 +58,19 @@ export default function Nav() {
                     <div className="overlay">
                         <div className="menu-overflow">
 
-                            <div>
-                            <h6>Log out</h6>
-                            </div>
-
                             <div className="flex-container profile-menu-items">
+
+                                <div className="flex-container">
                                 <img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="profile-img" />
+
                                 <div>
                                 <h5>Cyan Dalebout</h5>
-                                <h6>Settings</h6>
+                                <h6>Log out</h6>
                                 </div>
+                                </div>
+
+                                <h6>Settings</h6>
+
                             </div>
 
                             <div className="main-menu-items">

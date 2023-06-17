@@ -9,6 +9,7 @@ export default function Profile() {
                     src="https://64.media.tumblr.com/c71d53b605277ed613f6dfcea9bafbcc/tumblr_p359urOkdg1vsaj6co1_1280.png"
                     alt=""/>
                 </div>
+
                 <section className="outer-container profile-header-section">
                     <img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="profile-img" />
                     <h3>Cyan Dalebout</h3>

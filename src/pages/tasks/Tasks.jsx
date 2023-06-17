@@ -12,7 +12,7 @@ export default function Tasks() {
 
                     <section className="outer-container flex-container">
                         <div className="inner-container">
-                            <h5>Taks 1</h5>
+                            <h5>Task 1</h5>
                             <p>Due date: 12/12/2020</p>
                         </div>
                         <div>
@@ -23,7 +23,7 @@ export default function Tasks() {
 
                     <section className="outer-container flex-container">
                         <div className="inner-container">
-                            <h5>Taks 2</h5>
+                            <h5>Task 2</h5>
                             <p>Due date: 12/12/2020</p>
                         </div>
                         <div>

@@ -93,6 +93,15 @@ nav a{
     gap: 20px;
 }
 
+.profile-menu-items{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--grey);
+    padding-bottom: 20px;
+}
+
 .profile-menu-items img{
     width: 50px;
     height: 50px;

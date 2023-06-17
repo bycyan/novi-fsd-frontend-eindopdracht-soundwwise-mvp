@@ -1,5 +1,7 @@
 import React from "react";
 import "./Music.css"
+import {Link} from "react-router-dom";
+import MusicDetail from "../music-detail/MusicDetail.jsx";
 
 export default function Music() {
 
@@ -12,6 +14,7 @@ export default function Music() {
 
                 <section className="outer-container">
 
+                    <Link to= "./MusicDetail" >
                     <div className="inner-container flex-container music-item">
                         <img
                             src="https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/06/fdcd5a_d8dd6d540bd84e4e9df8cbcfa376ce0dmv2.jpg?resize=1000%2C1000&ssl=1"
@@ -21,6 +24,7 @@ export default function Music() {
                         <p>Music by Blake</p>
                         </div>
                     </div>
+                    </Link>
 
                     <div className="inner-container flex-container music-item">
                         <img
