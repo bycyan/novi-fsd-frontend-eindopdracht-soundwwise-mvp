@@ -7,7 +7,7 @@ export default function Tasks() {
             <>
                 <div className="tasks">
                     <section className="outer-container flex-container">
-                        <p>+ new task</p>
+                        <h6>+ new task</h6>
                     </section>
 
                     <section className="outer-container flex-container">

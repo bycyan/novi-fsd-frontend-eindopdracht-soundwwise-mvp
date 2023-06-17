@@ -63,17 +63,40 @@ nav a{
     left: 0;
     width: 100%;
     height: calc(100% - 90px);
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
     z-index: 9998; /* Adjust the z-index as necessary */
 }
 
 .menu-overflow{
     max-width: 575px;
+    height: 100%;
     margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
 }
 
 .switch-icon {
     transition: all 1.3s ease-in-out; /* Adjust the transition duration as needed */
 }
+
+.main-menu-items{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-menu-items img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 20px;
+}
+/*border-bottom: 1px solid #D9D9D9;*/

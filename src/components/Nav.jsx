@@ -44,11 +44,6 @@ export default function Nav() {
                     </div>
                 </Link>
 
-                {/*Menu*/}
-                {/*<Link to="" className="nav-bttn nav-plus">*/}
-                {/*    <img src={navPlus}/>*/}
-                {/*</Link>*/}
-
                 <button
                     className={`nav-bttn nav-plus ${isActive ? "active" : ""}`}
                     onClick={toggleMenu}
@@ -63,8 +58,23 @@ export default function Nav() {
                     <div className="overlay">
                         <div className="menu-overflow">
 
-                            <h3>Menu</h3>
-                            {/* Menu content */}
+                            <div>
+                            <h6>Log out</h6>
+                            </div>
+
+                            <div className="flex-container profile-menu-items">
+                                <img src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="profile-img" />
+                                <div>
+                                <h5>Cyan Dalebout</h5>
+                                <h6>Settings</h6>
+                                </div>
+                            </div>
+
+                            <div className="main-menu-items">
+                            <h4 >add task</h4>
+                            <h4><a href="/">add music</a></h4>
+                            <h4>add post</h4>
+                            </div>
                         </div>
                     </div>
                 )}

@@ -4,6 +4,7 @@ import {Routes, Route} from "react-router-dom";
 import Profile from "./pages/profile/profile.jsx";
 import UpperNav from "./components/UpperNav.jsx";
 import Tasks from "./pages/tasks/Tasks.jsx";
+import Music from "./pages/music/music.jsx";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Routes>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/tasks" element={<Tasks />} />
+                <Route path="/music" element={<Music />} />
           </Routes>
           </div>
       </>
