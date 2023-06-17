@@ -40,7 +40,7 @@
 
 .experience-item{
     margin-top: 20px;
-    border-bottom: 0.01rem solid var(--grey);
+    border-bottom: 0.01rem solid var(--tertiary);
     padding-bottom: 20px;
 }
 

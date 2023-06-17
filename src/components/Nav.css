@@ -37,9 +37,9 @@ nav{
     padding: 8px;
 }
 
-.nav-bttn:hover{
-    color: var(--primary);
-}
+/*.nav-bttn:hover{*/
+/*    color: var(--primary);*/
+/*}*/
 
 .nav-plus{
     width: 48px;
@@ -51,4 +51,29 @@ nav{
 nav a{
     color: #D9D9D9;
     text-decoration: none;
+}
+
+/**/
+
+
+.overlay {
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 90px);
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    z-index: 9998; /* Adjust the z-index as necessary */
+}
+
+.menu-overflow{
+    max-width: 575px;
+    margin: auto;
+}
+
+.switch-icon {
+    transition: all 1.3s ease-in-out; /* Adjust the transition duration as needed */
 }

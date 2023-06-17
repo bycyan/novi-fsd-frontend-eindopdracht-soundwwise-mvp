@@ -12,7 +12,7 @@ body {
     background-color: var(--tertiary);
     color: var(--neutral);
     font-family: Poppins, sans-serif;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
 }
 
 html {
@@ -161,13 +161,13 @@ button {
     font-size: 16px;
 }
 
-button:hover {
-    background-color: #45a049;
-}
+/*button:hover {*/
+/*    background-color: #45a049;*/
+/*}*/
 
-button:active {
-    background-color: #3e8e41;
-}
+/*button:active {*/
+/*    background-color: #3e8e41;*/
+/*}*/
 
 /* Mobile first queries */
 
