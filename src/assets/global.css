@@ -1,4 +1,5 @@
 /* reset */
+
 *,
 *::before,
 *::after {
@@ -11,6 +12,7 @@ body {
     background-color: var(--tertiary);
     color: var(--neutral);
     font-family: Poppins, sans-serif;
+    padding-bottom: 100px;
 }
 
 html {
@@ -88,16 +90,16 @@ img {
     margin-right: auto;
 }
 
-/*.flex-container {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    align-items: center;*/
-/*}*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 /* styles */
 
 :root {
-    --primary: #4CAF50;
+    --primary: #1DB954;
     --secondary: #212121;
     --tertiary: #121212;
     --neutral: #E9E9EA;
@@ -110,8 +112,8 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
-    /*margin-top: 0.5rem;*/
-    /*margin-bottom: 0.5rem;*/
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 h1 {

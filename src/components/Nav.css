@@ -37,6 +37,10 @@ nav{
     padding: 8px;
 }
 
+.nav-bttn:hover{
+    color: var(--primary);
+}
+
 .nav-plus{
     width: 48px;
     height: 48px;
