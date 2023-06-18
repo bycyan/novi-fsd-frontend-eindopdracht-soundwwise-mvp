@@ -18,7 +18,7 @@ export default function Profile() {
                 </section>
 
                 <section className="outer-container profile-experience-section">
-                    <div className="header flex-container"><h4>Experience</h4> <img src={threeDots} alt="dots"/></div>
+                    <div className="header flex-container"><h4>Showcases</h4> <img src={threeDots} alt="dots"/></div>
 
                     <div className="experience-item">
                         <div className="flex-container">

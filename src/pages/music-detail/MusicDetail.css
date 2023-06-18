@@ -35,9 +35,16 @@
 
 /*!**!*/
 
-.music-detail-nav .back{
+.backdrop{
+    width: 100%;
     background-color: rgba(30, 34, 38, 0.5);
-    border-bottom: 0.01rem solid var(--grey);
+}
+
+.backdrop-icons{
+    /*background-color: #00C48C;*/
+    cursor: pointer;
+    width: 50%;
+
 }
 
 .music-detail-nav{
@@ -55,20 +62,8 @@
     height: auto;
 }
 
-/*.inner-container.flex-container.music-item.playing::after {*/
-/*    content: '';*/
-/*    !*position: absolute;*!*/
-/*    top: 50%;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, -50%);*/
-/*    width: 10px;*/
-/*    height: 10px;*/
-/*    background-color: var(--primary);*/
-/*    border-radius: 50%;*/
-/*}*/
-
 .playhead-indicator {
-    /*position: absolute;*/
+    max-width: 100%;
     top: 0;
     left: 0;
     height: 4px;
@@ -76,6 +71,89 @@
     transition: width 0.2s ease; /* Adjust transition properties as needed */
 }
 
+.music-detail-item{
+    margin-top: 10px;
+    border-bottom: 0.01rem solid var(--tertiary);
+    padding-bottom: 10px;
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.music-detail-item img{
+    width: 60px;
+}
+
+.music-detail-item .info{
+    flex-grow: 1;
+}
+
 .playing {
     color: var(--primary); /* Set your desired color */
 }
+
+
+
+
+
+/**/
+
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /*grid-template-columns: repeat(3, minmax(100px, 200px));*/
+    /*grid-template-columns: repeat(3, 1fr);*/
+    /*grid-auto-rows: 250px;*/
+    justify-content: center;
+    grid-gap: 1rem;
+}
+
+.post {
+    max-height: 1fr;
+    position: relative;
+}
+
+.post-image {
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-image img {
+    object-fit: cover;
+    width: 100%;
+    vertical-align: top;
+}
+
+.post-overlay {
+    background: rgba(0,0,0, .4);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+.post:hover .post-overlay{
+    display: flex;
+}
+
+.post-like,
+.post-comments {
+    width: 80px;
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    .post-list {*/
+/*        grid-gap: 3px;*/
+/*    }*/
+/*}*/

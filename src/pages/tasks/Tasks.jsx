@@ -1,37 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
 import CheckBox from "../../components/ui/CheckBox.jsx";
+import Modal from "../../utils/Modal.jsx";
+import "./Tasks.css";
+import filter from "../../assets/filter.svg";
 
 export default function Tasks() {
+    const [tasks, setTasks] = useState([]);
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-        return (
-            <>
-                <div className="tasks">
-                    <section className="outer-container flex-container">
-                        <h6>+ new task</h6>
-                    </section>
+    const toggleCollapse = () => {
+        setIsCollapsed(!isCollapsed);
+    };
 
-                    <section className="outer-container flex-container">
-                        <div className="inner-container">
-                            <h5>Task 1</h5>
-                            <p>Due date: 12/12/2020</p>
+    const handleTaskCheck = (index) => {
+        setTasks((prevTasks) => {
+            const updatedTasks = [...prevTasks];
+            updatedTasks[index] = {
+                ...updatedTasks[index],
+                isChecked: !updatedTasks[index].isChecked
+            };
+            return updatedTasks;
+        });
+
+        if (!isCollapsed) {
+            setIsCollapsed(true);
+        }
+    };
+
+    const filteredTasks = isCollapsed
+        ? tasks.filter((task) => !task.isChecked)
+        : tasks;
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    const saveNewTask = (name, dueDate) => {
+        const newTask = {
+            name,
+            dueDate,
+            isChecked: false,
+        };
+        setTasks([...tasks, newTask]);
+        toggleModal();
+    };
+
+    return (
+        <>
+            <div className="tasks-container">
+                <section className="outer-container">
+                    <div className="flex-container tasks">
+                        <div className="new-task-button">
+                            <h6 onClick={toggleModal}>+ new task</h6>
                         </div>
-                        <div>
-                            <CheckBox />
+                        <div onClick={toggleCollapse} className="task-filter">
+                            <img src={ filter } alt=""/>
                         </div>
 
-                    </section>
+                    </div>
+                </section>
 
-                    <section className="outer-container flex-container">
-                        <div className="inner-container">
-                            <h5>Task 2</h5>
-                            <p>Due date: 12/12/2020</p>
-                        </div>
-                        <div>
-                            <CheckBox />
-                        </div>
+                {filteredTasks.map((task, index) => (
+                    (!isCollapsed || !task.isChecked) && (
+                        <section
+                            className="outer-container"
+                            key={index}
+                            style={{ display: task.isChecked ? "none" : "block" }}
+                        >
+                            <div className="flex-container task-item">
+                                <div>
+                                    <h5>{task.name}</h5>
+                                    <p>Due date: {task.dueDate}</p>
+                                </div>
+                                <div>
+                                    <CheckBox
+                                        checked={task.isChecked}
+                                        onChange={() => handleTaskCheck(index)}
+                                    />
+                                </div>
+                            </div>
+                        </section>
+                    )
+                ))}
 
-                    </section>
-                </div>
-            </>
-        );
+                <Modal
+                    show={showModal}
+                    onClose={toggleModal}
+                    onSave={saveNewTask}
+                />
+            </div>
+        </>
+    );
 }

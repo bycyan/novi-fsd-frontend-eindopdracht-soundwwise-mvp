@@ -7,7 +7,7 @@ export default function Music() {
 
     return (
         <>
-            <div className="tasks">
+            <div>
                 <section className="outer-container flex-container">
                     <h6>+ new project</h6>
                 </section>

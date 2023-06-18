@@ -52,6 +52,7 @@ a {
     text-underline-position: under;
     /* Sets the thickness as a percentage of the font size */
     text-decoration-thickness: 8%;
+    color: var();
 }
 
 img {
