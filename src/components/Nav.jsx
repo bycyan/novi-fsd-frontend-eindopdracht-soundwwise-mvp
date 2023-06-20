@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./Nav.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import navProfile from "../assets/menu-icons/nav-profile.svg";
 import navPosts from "../assets/menu-icons/nav-posts.svg";
@@ -21,6 +21,16 @@ export default function Nav() {
     const closeMenu = () => {
         setMenuVisible(false);
         setIsActive(false); // Toggle active state
+    };
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Perform logout logic here
+        // ...
+
+        // Redirect to the "/" route
+        navigate('/');
     };
 
     return (
@@ -65,7 +75,7 @@ export default function Nav() {
 
                                 <div>
                                 <h5>Cyan Dalebout</h5>
-                                <h6>Log out</h6>
+                                    <a href="" onClick={handleLogout}><h6>log out</h6></a>
                                 </div>
                                 </div>
 

@@ -7,6 +7,8 @@ import Tasks from "./pages/tasks/Tasks.jsx";
 import Music from "./pages/music/music.jsx";
 import Posts from "./pages/posts/Posts.jsx";
 import MusicDetail from "./pages/music-detail/MusicDetail.jsx";
+import LoginPage from "./pages/login/LoginPage.jsx";
+import { AuthProvider } from './context/AuthProvider.jsx';
 
 
 function App() {
@@ -14,19 +16,25 @@ function App() {
     const hideNav = location.pathname === '/music/MusicDetail';
 
   return (
-      <>
-          {!hideNav && <UpperNav />}
-          {!hideNav && <Nav />}
-          <div>
-          <Routes>
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/tasks" element={<Tasks />} />
-                <Route path="/music" element={<Music />} />
-                <Route path="/posts" element={<Posts />} />
-                <Route path="music/MusicDetail" element={<MusicDetail />} />
-          </Routes>
-          </div>
-      </>
+      <AuthProvider>
+          <>
+
+              {!hideNav && <UpperNav />}
+              {!hideNav && <Nav />}
+              <div>
+              <Routes>
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/tasks" element={<Tasks />} />
+                    <Route path="/music" element={<Music />} />
+                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/music/MusicDetail" element={<MusicDetail />} />
+              </Routes>
+              </div>
+
+          </>
+      </AuthProvider>
+
   );
 }
 

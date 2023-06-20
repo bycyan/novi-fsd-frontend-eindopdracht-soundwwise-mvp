@@ -18,8 +18,10 @@ export default function MusicDetail() {
     const [pageDetails, setPageDetails] = useState({
         pageTitle: "Music Project",
         pageImage: "https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/06/fdcd5a_d8dd6d540bd84e4e9df8cbcfa376ce0dmv2.jpg?resize=1000%2C1000&ssl=1",
-        pageDescription: "Artist"});
+        pageDescription: "Artist"
+    });
 
+    const [contentImages, setContentImages] = useState([]);
 
     useEffect(() => {
         const audioElement = audioRefs[currentSongIndex]?.current;
@@ -81,21 +83,41 @@ export default function MusicDetail() {
         setIsModalOpen(true); // Open the modal
     };
 
+    const handleAddImage = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const imageDataUrl = reader.result;
+                setContentImages((prevImages) => [...prevImages, imageDataUrl]);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+    const handleRemoveImage = (index) => {
+        const updatedImages = [...contentImages];
+        updatedImages.splice(index, 1);
+        setContentImages(updatedImages);
+    };
+
     return (
         <>
             <div className="backdrop">
-            <div className="music-detail-nav">
-                <section className="flex-container upper-nav">
-                    <div >
-                        <a href="javascript:history.back()">
-                        <img className="backdrop-icons left" src={back} alt=""/></a>
-                    </div>
-                    {/* Open the modal */}
-                    <a onClick={openModal}>
-                        <img className="backdrop-icons right" src={threeDots} alt="" />
-                    </a>
-                </section>
-            </div>
+                <div className="music-detail-nav">
+                    <section className="flex-container upper-nav">
+                        <div >
+                            <a href="javascript:history.back()">
+                                <img className="backdrop-icons left" src={back} alt="" />
+                            </a>
+                        </div>
+                        {/* Open the modal */}
+                        <a onClick={openModal}>
+                            <img className="backdrop-icons right" src={threeDots} alt="" />
+                        </a>
+                    </section>
+                </div>
             </div>
 
             <div className="music-detail-cover-img">
@@ -146,20 +168,33 @@ export default function MusicDetail() {
 
                 <section className="outer-container">
                     <h5>content</h5>
-
                     <section className="post-list">
-                        <a href="" className="post">
-                            <figure className="post-image">
-                                <img src="https://picsum.photos/300?image=600" alt="" />
-                            </figure>
-                            <span className="post-overlay">
-                <p>
-                  <span className="post-likes">150</span>
-                </p>
-              </span>
-                        </a>
+                        <div className="post add-image">
+                            <label htmlFor="imageInput">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    id="imageInput"
+                                    onChange={handleAddImage}
+                                />
+                                <span className="add-image-overlay">+</span>
+                            </label>
+                        </div>
 
-                        {/* More post items */}
+
+                        {contentImages.map((image, index) => (
+                            <div key={index} className="post">
+                                <figure className="post-image">
+                                    <img src={image} alt="" />
+                                </figure>
+                                <span className="post-overlay">
+                                  <p>
+                                    {/*<span className="post-likes">150</span>*/}
+                                    <button onClick={() => handleRemoveImage(index)}>Remove</button>
+                                  </p>
+                                </span>
+                            </div>
+                        ))}
                     </section>
                 </section>
             </div>
