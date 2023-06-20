@@ -8,9 +8,13 @@ export default function Tasks() {
     const [tasks, setTasks] = useState([]);
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [isFilterActive, setIsFilterActive] = useState(false);
 
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
+        if (isFilterActive) {
+            setIsFilterActive(false);
+        }
     };
 
     const handleTaskCheck = (index) => {
@@ -28,7 +32,13 @@ export default function Tasks() {
         }
     };
 
-    const filteredTasks = isCollapsed
+    const toggleFilter = () => {
+        setIsFilterActive(!isFilterActive);
+    };
+
+    console.log("tasks", tasks);
+
+    const filteredTasks = isCollapsed && isFilterActive
         ? tasks.filter((task) => !task.isChecked)
         : tasks;
 
@@ -40,7 +50,7 @@ export default function Tasks() {
         const newTask = {
             name,
             dueDate,
-            isChecked: false,
+            isChecked: false
         };
         setTasks([...tasks, newTask]);
         toggleModal();
@@ -54,41 +64,33 @@ export default function Tasks() {
                         <div className="new-task-button">
                             <h6 onClick={toggleModal}>+ new task</h6>
                         </div>
-                        <div onClick={toggleCollapse} className="task-filter">
-                            <img src={ filter } alt=""/>
+                        <div onClick={toggleFilter} className="task-filter">
+                            <img src={filter} alt="" />
                         </div>
-
                     </div>
                 </section>
 
                 {filteredTasks.map((task, index) => (
-                    (!isCollapsed || !task.isChecked) && (
-                        <section
-                            className="outer-container"
-                            key={index}
-                            style={{ display: task.isChecked ? "none" : "block" }}
-                        >
-                            <div className="flex-container task-item">
-                                <div>
-                                    <h5>{task.name}</h5>
-                                    <p>Due date: {task.dueDate}</p>
-                                </div>
-                                <div>
-                                    <CheckBox
-                                        checked={task.isChecked}
-                                        onChange={() => handleTaskCheck(index)}
-                                    />
-                                </div>
+                    <section className="outer-container" key={index}>
+                        <div className="flex-container task-item">
+                            <div>
+                                <h5>{task.name}</h5>
+                                <p>Due date: {task.dueDate}</p>
                             </div>
-                        </section>
-                    )
+                            <div>
+                                <CheckBox
+                                    checked={task.isChecked}
+                                    onChange={() => {
+                                        handleTaskCheck(index);
+                                        console.log("Checkbox clicked:", task);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </section>
                 ))}
 
-                <Modal
-                    show={showModal}
-                    onClose={toggleModal}
-                    onSave={saveNewTask}
-                />
+                <Modal show={showModal} onClose={toggleModal} onSave={saveNewTask} />
             </div>
         </>
     );

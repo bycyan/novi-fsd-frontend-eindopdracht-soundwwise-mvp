@@ -5,6 +5,7 @@ import song_2 from "../../assets/song_2.mp3";
 import threeDots from "../../assets/three-dots-vertical.svg";
 import EditPageDetailsModal from "../../utils/EditPageDetailsModal.jsx";
 import back from "../../assets/back-left.svg";
+import UploadButton from "../../utils/UploadButton.jsx";
 
 export default function MusicDetail() {
     const [currentSongIndex, setCurrentSongIndex] = useState(null);
@@ -45,17 +46,35 @@ export default function MusicDetail() {
         }
     }, [currentSongIndex]);
 
+    const [isPlayerVisible, setIsPlayerVisible] = useState(false);
+
     const handleClick = (songIndex) => {
         if (currentSongIndex === songIndex && isPlaying) {
             audioRefs[currentSongIndex]?.current.pause();
+            setIsPlayerVisible(false);
         } else {
             if (currentSongIndex !== null && currentSongIndex !== songIndex) {
                 audioRefs[currentSongIndex]?.current.pause();
             }
             setCurrentSongIndex(songIndex);
             audioRefs[songIndex]?.current.play();
+            setIsPlayerVisible(true);
         }
         setIsPlaying(!isPlaying);
+    };
+
+    const handlePrevious = () => {
+        if (currentSongIndex > 0) {
+            setCurrentSongIndex(currentSongIndex - 1);
+            setIsPlaying(true);
+        }
+    };
+
+    const handleNext = () => {
+        if (currentSongIndex < audioRefs.length - 1) {
+            setCurrentSongIndex(currentSongIndex + 1);
+            setIsPlaying(true);
+        }
     };
 
     const calculateProgress = () => {
@@ -102,16 +121,18 @@ export default function MusicDetail() {
         setContentImages(updatedImages);
     };
 
+    const handleUpload = (uploadedFile) => {
+        // Handle the uploaded file URL
+        console.log("Uploaded file:", uploadedFile);
+    };
+
     return (
         <>
             <div className="backdrop">
                 <div className="music-detail-nav">
                     <section className="flex-container upper-nav">
-                        <div >
-                            <a href="javascript:history.back()">
-                                <img className="backdrop-icons left" src={back} alt="" />
-                            </a>
-                        </div>
+                        <button onClick={() => history.go(-1)}>Go Back</button>
+                        {/*<img className="backdrop-icons left" src={back} alt="" />*/}
                         {/* Open the modal */}
                         <a onClick={openModal}>
                             <img className="backdrop-icons right" src={threeDots} alt="" />
@@ -129,6 +150,10 @@ export default function MusicDetail() {
 
             <div>
                 <div className="music-cover-img">
+                    <div>
+                        <h1>My Component</h1>
+                        <UploadButton onUpload={handleUpload} />
+                    </div>
                     <img
                         src="https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/06/fdcd5a_d8dd6d540bd84e4e9df8cbcfa376ce0dmv2.jpg?resize=1000%2C1000&ssl=1"
                         alt=""
@@ -164,6 +189,29 @@ export default function MusicDetail() {
                         </div>
                         <audio ref={audioRefs[0]} src={song} />
                     </div>
+
+                    {/* Song 2 */}
+                    <div
+                        className={`inner-container flex-container music-detail-item ${
+                            isPlaying && currentSongIndex === 1 ? "playing" : ""
+                        }`}
+                        onClick={() => handleClick(1)}
+                    >
+                        <img src="https://f4.bcbits.com/img/a3177371765_65" alt="" />
+                        <div className="info">
+                            <h5 className={isPlaying && currentSongIndex === 1 ? "playing" : ""}>
+                                Henk was here
+                            </h5>
+                            <p className={isPlaying && currentSongIndex === 1 ? "playing" : ""}>
+                                Ivan Ave
+                            </p>
+                        </div>
+
+                        <div>
+                            <p>{calculateProgress()}</p>
+                        </div>
+                        <audio ref={audioRefs[1]} src={song_2} />
+                    </div>
                 </section>
 
                 <section className="outer-container">
@@ -181,17 +229,18 @@ export default function MusicDetail() {
                             </label>
                         </div>
 
-
                         {contentImages.map((image, index) => (
                             <div key={index} className="post">
                                 <figure className="post-image">
                                     <img src={image} alt="" />
                                 </figure>
                                 <span className="post-overlay">
-                                  <p>
-                                    {/*<span className="post-likes">150</span>*/}
-                                    <button onClick={() => handleRemoveImage(index)}>Remove</button>
-                                  </p>
+                                    <p>
+                                        {/*<span className="post-likes">150</span>*/}
+                                        <button onClick={() => handleRemoveImage(index)}>
+                                            Remove
+                                        </button>
+                                    </p>
                                 </span>
                             </div>
                         ))}
@@ -215,7 +264,7 @@ export default function MusicDetail() {
                         <div>
                             <label htmlFor="pageImage">Image:</label>
                             <input
-                                type="image"
+                                type="text"
                                 id="pageImage"
                                 name="pageImage"
                                 value={pageDetails.pageImage}
@@ -226,9 +275,7 @@ export default function MusicDetail() {
                                     })
                                 }
                             />
-
                         </div>
-
 
                         <div>
                             <label htmlFor="pageTitle">Project:</label>
@@ -262,6 +309,20 @@ export default function MusicDetail() {
                     </EditPageDetailsModal>
                 )}
             </div>
+
+            {isPlayerVisible && (
+                <div className="music-player outer-container">
+                    <div className="player-controls">
+                        <div className="flex-container">
+                            <button onClick={() => handleClick(currentSongIndex)}>
+                                {isPlaying && currentSongIndex === 0 ? "Pause" : "Play"}
+                            </button>
+                            <button onClick={handlePrevious}>Previous</button>
+                            <button onClick={handleNext}>Next</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
